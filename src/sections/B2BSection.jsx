@@ -1,77 +1,77 @@
 import { useState } from "react";
+import BeforeAfterPanel from "../components/BeforeAfterPanel";
+import ProductOfferCard from "../components/ProductOfferCard";
 import SectionShell from "../components/SectionShell";
 import SignalCard from "../components/SignalCard";
+import FlowMap from "../components/FlowMap";
 
-const businessTasks = [
+const offers = [
   {
-    id: "kpi",
-    title: "Повысить KPI",
-    pain: "План продаж и производственные показатели растут медленно.",
-    solution: "AKMEHR связывает психотип, роли и обучение с бизнес-метриками.",
-    modules: "Нейроаналитик, треки обучения, карта компетенций, BI-дашборды.",
-    result: "Рост KPI и прозрачная связь людей с результатом.",
+    id: "audit",
+    title: "Аудит команды и ролей",
+    description:
+      "Диагностика сотрудников, карта ролей, зоны риска и рекомендации руководителю.",
     cta: "Запросить аудит команды"
   },
   {
-    id: "roles",
-    title: "Разобрать команду и роли",
-    pain: "Роли пересекаются, сотрудники перегружены, эффективность падает.",
-    solution: "Распаковка предприятия и карта ролей по компетенциям.",
-    modules: "Диагностика сотрудников, карта ролей, матрица компетенций.",
-    result: "Понятная структура команды и зоны ответственности.",
-    cta: "Запросить аудит команды"
+    id: "unpack",
+    title: "Распаковка предприятия",
+    description: "Анализ структуры, процессов, ролей, KPI и точек автоматизации.",
+    cta: "Заказать распаковку предприятия"
+  },
+  {
+    id: "tracks",
+    title: "Треки обучения под KPI",
+    description:
+      "Персональные и командные программы развития, связанные с бизнес-метриками.",
+    cta: "Собрать трек развития"
   },
   {
     id: "sales",
-    title: "Автоматизировать продажи",
-    pain: "Лиды теряются, квалификация нестабильная, высокая нагрузка на менеджеров.",
-    solution: "Нейропродажник ведет диалог, квалифицирует и доводит до заявки.",
-    modules: "Нейропродажник, база знаний (RAG), amoCRM.",
-    result: "Стабильная конверсия и ускорение первичной обработки лидов.",
+    title: "Нейропродажник",
+    description:
+      "AI-система диалога с клиентами, квалификации, персонализации и доведения до заявки.",
     cta: "Посмотреть демо нейропродажника"
   },
   {
-    id: "agents",
-    title: "Внедрить нейро-сотрудников",
-    pain: "Рутинные процессы перегружают ключевых сотрудников.",
-    solution: "Подключение нейроаналитика, нейросекретаря, нейро-HR и нейропродажника.",
-    modules: "Нейроаналитик, нейросекретарь, нейро-HR, нейропродажник.",
-    result: "Сокращение ручных операций и масштабируемые процессы.",
+    id: "analyst",
+    title: "Нейроаналитик",
+    description:
+      "Анализ поведения, лидов, каналов, KPI и управленческих сигналов для руководителя.",
     cta: "Посмотреть демо нейроаналитика"
   },
   {
-    id: "analytics",
-    title: "Построить аналитику",
-    pain: "Нет единой картины по воронке, команде и источникам трафика.",
-    solution: "Сквозная аналитика с online/offline контуром нейроаналитика.",
-    modules: "Нейроаналитик, дашборды, Telegram-отчеты.",
-    result: "Прозрачные решения на основе фактов, а не интуиции.",
-    cta: "Посмотреть демо нейроаналитика"
-  },
-  {
-    id: "crm",
-    title: "Подключить amoCRM",
-    pain: "Лиды и активность клиента не связаны с контекстом диагностики.",
-    solution: "Передача ветки, цели, психотипа и статуса воронки в CRM.",
-    modules: "amoCRM, сайт AKMEHR, нейропродажник, аналитика.",
-    result: "Единый профиль клиента и управляемая воронка.",
-    cta: "Запросить аудит команды"
+    id: "secretary",
+    title: "Нейросекретарь",
+    description: "Превращает встречи в протоколы, задачи и контроль исполнения.",
+    cta: "Посмотреть демо нейросекретаря"
   }
 ];
 
 export default function B2BSection() {
-  const [activeId, setActiveId] = useState(businessTasks[0].id);
-  const active = businessTasks.find((task) => task.id === activeId) ?? businessTasks[0];
+  const [activeId, setActiveId] = useState(offers[0].id);
+  const active = offers.find((task) => task.id === activeId) ?? offers[0];
 
   return (
     <SectionShell
       eyebrow="Ветка B2B"
       title="Для бизнеса"
-      lead="Для руководителей, HR, отделов продаж и обучения: диагностика, KPI и внедрение нейро-сотрудников."
+      lead="Коммерческий контур AKMEHR: диагностика команды, обучение под KPI и внедрение нейро-сотрудников."
     >
+      <div className="offers-grid">
+        {offers.map((offer) => (
+          <ProductOfferCard
+            key={offer.id}
+            title={offer.title}
+            description={offer.description}
+            cta={offer.cta}
+          />
+        ))}
+      </div>
       <div className="split-layout">
         <div className="selector-list">
-          {businessTasks.map((task) => (
+          <h4>Выберите приоритет бизнеса</h4>
+          {offers.map((task) => (
             <button
               key={task.id}
               type="button"
@@ -85,16 +85,13 @@ export default function B2BSection() {
         <article className="detail-panel">
           <h3>{active.title}</h3>
           <p>
-            <span>Боль бизнеса:</span> {active.pain}
+            <span>Что можно заказать:</span> {active.description}
           </p>
           <p>
-            <span>Решение AKMEHR:</span> {active.solution}
+            <span>Контур решения:</span> диагностика → роли → AI-модули → KPI → CRM
           </p>
           <p>
-            <span>Модули:</span> {active.modules}
-          </p>
-          <p>
-            <span>Результат:</span> {active.result}
+            <span>Результат для руководителя:</span> управляемая команда и прозрачная воронка.
           </p>
           <div className="cta-row">
             <button type="button">{active.cta}</button>
@@ -122,6 +119,34 @@ export default function B2BSection() {
           points={["KPI-аналитика", "Интеграция с amoCRM", "Демо-модули", "Сквозная отчетность"]}
         />
       </div>
+      <BeforeAfterPanel
+        beforeItems={[
+          "Роли распределены интуитивно",
+          "Обучение не связано с результатом",
+          "Лиды теряются",
+          "Аналитика собирается вручную"
+        ]}
+        afterItems={[
+          "Карта команды и ролей",
+          "Обучение связано с KPI",
+          "Нейро-сотрудники закрывают повторяемые процессы",
+          "Заявки и статусы передаются в amoCRM",
+          "Руководитель получает AI-рекомендации"
+        ]}
+      />
+      <article className="business-flow-block">
+        <h3>Бизнес-контур AKMEHR</h3>
+        <FlowMap
+          nodes={[
+            "Сайт",
+            "Нейроаналитик",
+            "Нейропродажник",
+            "amoCRM",
+            "Дашборды",
+            "Управленческие решения"
+          ]}
+        />
+      </article>
     </SectionShell>
   );
 }

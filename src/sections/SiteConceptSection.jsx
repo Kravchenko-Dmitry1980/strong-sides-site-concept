@@ -1,5 +1,7 @@
 import SectionShell from "../components/SectionShell";
+import ContactBlock from "../components/ContactBlock";
 import SignalCard from "../components/SignalCard";
+import TrustBlock from "../components/TrustBlock";
 
 const futureNav = [
   "Главная",
@@ -13,7 +15,9 @@ const futureNav = [
   "Кейсы",
   "Блог",
   "Контакты",
-  "Документы"
+  "Документы",
+  "Политика обработки персональных данных",
+  "Личный кабинет (будущий этап)"
 ];
 
 export default function SiteConceptSection() {
@@ -21,7 +25,7 @@ export default function SiteConceptSection() {
     <SectionShell
       eyebrow="Дорожная карта платформы"
       title="Концепция будущего сайта"
-      lead="Переход от текущей страницы к зрелому React-сайту с четкой навигацией и продуктовыми ветками."
+      lead="Целевая архитектура сайта для согласования с партнерами: навигация, доверие, контакты и продуктовые контуры."
     >
       <div className="cards-grid">
         <SignalCard
@@ -60,6 +64,22 @@ export default function SiteConceptSection() {
           ))}
         </div>
       </article>
+      <div className="trust-layout">
+        <ContactBlock />
+        <TrustBlock
+          items={[
+            "Юридические документы",
+            "Политика обработки персональных данных",
+            "Согласие на обработку персональных данных",
+            "Реквизиты организации",
+            "Партнеры",
+            "Кейсы",
+            "Блог / исследования",
+            "Демо",
+            "Планируемый личный кабинет"
+          ]}
+        />
+      </div>
     </SectionShell>
   );
 }

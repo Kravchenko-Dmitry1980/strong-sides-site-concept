@@ -67,10 +67,19 @@ export default function B2GSection() {
     <SectionShell
       eyebrow="Ветка B2G"
       title="Для государства и организаций"
-      lead="Профориентация, образовательные программы, гранты и региональные проекты с доказуемой эффективностью."
+      lead="Профориентация, образовательные и региональные программы с измеримой эффективностью и отчетностью."
     >
+      <article className="formats-block">
+        <h3>Форматы программ</h3>
+        <div className="formats-grid">
+          {directions.map((item) => (
+            <span key={item.id}>{item.title}</span>
+          ))}
+        </div>
+      </article>
       <div className="split-layout">
         <div className="selector-list">
+          <h4>Выберите формат программы</h4>
           {directions.map((direction) => (
             <button
               key={direction.id}
@@ -116,8 +125,15 @@ export default function B2GSection() {
           points={["Региональные программы", "Грантовые проекты", "Госзаказ"]}
         />
         <SignalCard
-          title="Контроль эффективности"
-          points={["Отчетность", "Методологическая база", "KPI программ", "Сквозная аналитика"]}
+          title="Что получает организация"
+          points={[
+            "Цифровую карту участников",
+            "Рекомендации по трекам",
+            "Аналитику по группам",
+            "Отчетность по программе",
+            "Показатели эффективности",
+            "Методологическую базу"
+          ]}
         />
       </div>
     </SectionShell>

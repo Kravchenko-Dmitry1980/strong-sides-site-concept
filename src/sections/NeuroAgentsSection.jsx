@@ -1,51 +1,52 @@
 import { useState } from "react";
+import ModuleShowcaseCard from "../components/ModuleShowcaseCard";
 import SectionShell from "../components/SectionShell";
 
 const agents = [
   {
-    id: "analyst",
-    title: "Нейроаналитик",
-    does: "Анализирует поведение пользователя на сайте, определяет психотип и намерение.",
-    data: "Поведенческие сигналы, цели пользователя, результаты тестов, источник трафика.",
-    embed: "Сайт AKMEHR, CRM, дашборды, Telegram-отчеты.",
-    result: "Персональный оффер и передача данных в нейропродажника и CRM.",
-    fit: "B2C, B2B, B2G"
-  },
-  {
     id: "sales",
     title: "Нейропродажник",
-    does: "Ведет диалог, квалифицирует запрос, работает с возражениями и доводит до заявки.",
-    data: "Контекст пользователя, RAG-база знаний, история диалога, статус воронки.",
-    embed: "Сайт AKMEHR, демо-модули, amoCRM.",
-    result: "Рост конверсии в заявку, запись или консультацию.",
-    fit: "B2B, B2C"
+    audience: "Бизнес, продажи, сайты, отделы продаж",
+    does: "Вести диалог, квалифицировать, персонализировать и доводить до заявки.",
+    data: "Поведение, психотип, база знаний, CRM.",
+    result: "Больше целевых заявок и меньше потерь на первом контакте.",
+    status: "Демо доступно"
+  },
+  {
+    id: "analyst",
+    title: "Нейроаналитик",
+    audience: "Руководитель, маркетинг, продажи",
+    does: "Анализировать поведение, каналы, лиды и KPI.",
+    data: "Сайт, Метрика, CRM, заявки, психотипы.",
+    result: "Понятные сигналы, где теряются клиенты и что делать.",
+    status: "Демо готовится"
   },
   {
     id: "secretary",
     title: "Нейросекретарь",
-    does: "Транскрибирует встречи, формирует протоколы и задачи, запускает рассылки.",
-    data: "Созвоны, сообщения, задачи, договоренности.",
-    embed: "CRM, корпоративные коммуникации, внутренние процессы.",
-    result: "Снижение рутины и контроль исполнения решений.",
-    fit: "B2B, B2G"
+    audience: "Руководители, команды, проектные группы",
+    does: "Превращать встречи в итоги, задачи и контроль исполнения.",
+    data: "Аудио, видео, текст, участники, повестка.",
+    result: "Протокол, задачи, ответственные, сроки.",
+    status: "Есть наработки демо"
   },
   {
     id: "hr",
     title: "Нейро-HR",
-    does: "Анализирует резюме, проводит первичный отбор и помогает в интервью.",
-    data: "Резюме, профили вакансий, параметры кандидатов, результаты оценок.",
-    embed: "Контур подбора персонала, CRM, HR-системы.",
-    result: "Ускорение найма и повышение качества подбора.",
-    fit: "B2B, B2G"
+    audience: "HR, рекрутинг, обучение",
+    does: "Анализ кандидатов, первичный отбор, вопросы, рекомендации.",
+    data: "Резюме, вакансия, ответы кандидата, профиль роли.",
+    result: "Shortlist и рекомендации по кандидату.",
+    status: "Концепт"
   },
   {
     id: "mentor",
     title: "Нейронаставник / трекер развития",
-    does: "Ведет персональные треки, формирует задания и обратную связь.",
-    data: "Психотип, цели, результаты обучения, динамика компетенций.",
-    embed: "BS-Evolve, образовательные треки, личный кабинет.",
-    result: "Системное развитие компетенций и устойчивый прогресс.",
-    fit: "B2C, B2B, B2G"
+    audience: "B2C, обучение, корпоративное развитие",
+    does: "Сопровождать трек развития.",
+    data: "Диагностика, задания, прогресс, обратная связь.",
+    result: "Персональный рост компетенций.",
+    status: "Связан с BS-Evolve"
   }
 ];
 
@@ -57,10 +58,25 @@ export default function NeuroAgentsSection() {
     <SectionShell
       eyebrow="Продуктовые модули"
       title="Нейро-сотрудники"
-      lead="AI-модули платформы, которые объединяют диагностику, сопровождение, продажи и аналитику."
+      lead="Витрина AI-модулей для пилота: можно обсуждать демо, состав интеграций и этап внедрения."
     >
+      <div className="module-showcase-grid">
+        {agents.map((agent) => (
+          <ModuleShowcaseCard
+            key={agent.id}
+            title={agent.title}
+            audience={agent.audience}
+            task={agent.does}
+            result={agent.result}
+            status={agent.status}
+            active={agent.id === active.id}
+            onClick={() => setActiveId(agent.id)}
+          />
+        ))}
+      </div>
       <div className="split-layout">
         <div className="selector-list">
+          <h4>Подробности модуля</h4>
           {agents.map((agent) => (
             <button
               key={agent.id}
@@ -75,20 +91,25 @@ export default function NeuroAgentsSection() {
         <article className="detail-panel">
           <h3>{active.title}</h3>
           <p>
-            <span>Что делает:</span> {active.does}
+            <span>Для кого:</span> {active.audience}
+          </p>
+          <p>
+            <span>Какую задачу закрывает:</span> {active.does}
           </p>
           <p>
             <span>Какие данные использует:</span> {active.data}
           </p>
           <p>
-            <span>Куда встраивается:</span> {active.embed}
-          </p>
-          <p>
             <span>Какой результат даёт:</span> {active.result}
           </p>
           <p>
-            <span>Подходит для веток:</span> {active.fit}
+            <span>Статус демо:</span> {active.status}
           </p>
+          <div className="cta-row">
+            <button type="button">Посмотреть демо</button>
+            <button type="button">Добавить в пилот</button>
+            <button type="button">Обсудить внедрение</button>
+          </div>
         </article>
       </div>
     </SectionShell>

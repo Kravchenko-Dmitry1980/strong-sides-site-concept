@@ -1,4 +1,4 @@
-const nodes = [
+const defaultNodes = [
   "Сайт AKMEHR",
   "AI-навигатор",
   "Выбор ветки",
@@ -7,7 +7,7 @@ const nodes = [
   "Дашборды и отчеты"
 ];
 
-export default function FlowMap() {
+export default function FlowMap({ nodes = defaultNodes }) {
   return (
     <div className="flow-map">
       {nodes.map((node, index) => (
