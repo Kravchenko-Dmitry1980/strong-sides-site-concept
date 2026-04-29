@@ -1,5 +1,6 @@
 import { useState } from "react";
 import BeforeAfterPanel from "../components/BeforeAfterPanel";
+import BusinessDashboardMockup from "../components/BusinessDashboardMockup";
 import ProductOfferCard from "../components/ProductOfferCard";
 import SectionShell from "../components/SectionShell";
 import SignalCard from "../components/SignalCard";
@@ -56,7 +57,7 @@ export default function B2BSection() {
     <SectionShell
       eyebrow="Ветка B2B"
       title="Для бизнеса"
-      lead="Коммерческий контур AKMEHR: диагностика команды, обучение под KPI и внедрение нейро-сотрудников."
+      lead="Коммерческий контур платформы «Сильные стороны»: диагностика команды, обучение под KPI и внедрение нейро-сотрудников."
     >
       <div className="offers-grid">
         {offers.map((offer) => (
@@ -134,8 +135,23 @@ export default function B2BSection() {
           "Руководитель получает AI-рекомендации"
         ]}
       />
+      <div className="kpi-mock-grid">
+        <article>
+          <span>Конверсия первичного контакта</span>
+          <strong>+22%</strong>
+        </article>
+        <article>
+          <span>Скорость квалификации лидов</span>
+          <strong>1.8x</strong>
+        </article>
+        <article>
+          <span>Управленческая прозрачность</span>
+          <strong>94%</strong>
+        </article>
+      </div>
+      <BusinessDashboardMockup />
       <article className="business-flow-block">
-        <h3>Бизнес-контур AKMEHR</h3>
+        <h3>Бизнес-контур платформы</h3>
         <FlowMap
           nodes={[
             "Сайт",

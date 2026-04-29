@@ -1,4 +1,5 @@
 import { useState } from "react";
+import AgentShowcase from "../components/AgentShowcase";
 import ModuleShowcaseCard from "../components/ModuleShowcaseCard";
 import SectionShell from "../components/SectionShell";
 
@@ -58,8 +59,9 @@ export default function NeuroAgentsSection() {
     <SectionShell
       eyebrow="Продуктовые модули"
       title="Нейро-сотрудники"
-      lead="Витрина AI-модулей для пилота: можно обсуждать демо, состав интеграций и этап внедрения."
+      lead="Нейро-сотрудники платформы «Сильные стороны»: витрина AI-модулей для пилота и внедрения."
     >
+      <AgentShowcase agents={agents} />
       <div className="module-showcase-grid">
         {agents.map((agent) => (
           <ModuleShowcaseCard
@@ -74,6 +76,13 @@ export default function NeuroAgentsSection() {
           />
         ))}
       </div>
+      <article className="agents-highlight">
+        <h3>Фокус пилота</h3>
+        <p>
+          Наиболее зрелые для демонстрации в партнерском контуре: Нейропродажник и
+          Нейроаналитик. Они показывают связку данных, диалога и управленческих решений.
+        </p>
+      </article>
       <div className="split-layout">
         <div className="selector-list">
           <h4>Подробности модуля</h4>

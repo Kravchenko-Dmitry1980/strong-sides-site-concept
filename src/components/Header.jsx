@@ -4,7 +4,7 @@ export default function Header({ items, activeId, onSelect, hidden }) {
       <div className="brand-block">
         <span className="brand-mark" />
         <div>
-          <strong>AKMEHR</strong>
+          <strong>Сильные стороны</strong>
           <p>Платформа управления человеческим потенциалом</p>
         </div>
       </div>

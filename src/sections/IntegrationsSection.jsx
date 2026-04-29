@@ -1,3 +1,4 @@
+import DataFlowMap from "../components/DataFlowMap";
 import FlowMap from "../components/FlowMap";
 import IntegrationMap from "../components/IntegrationMap";
 import SectionShell from "../components/SectionShell";
@@ -12,19 +13,29 @@ export default function IntegrationsSection() {
     >
       <FlowMap
         nodes={[
-          "AKMEHR сайт",
+          "Сайт «Сильные стороны»",
           "AI-навигатор",
-          "BS-Evolve",
           "Нейроаналитик",
           "Нейропродажник",
+          "BS-Evolve / amoCRM",
+          "Дашборды и отчёты",
+          "BS-Evolve",
           "amoCRM",
           "База знаний",
           "Telegram-боты",
-          "Дашборды",
           "Будущие API"
         ]}
       />
+      <article className="integration-explain">
+        <h3>Платформенный поток данных</h3>
+        <p>
+          Каждый шаг маршрута формирует цифровой след: выбор ветки, цель, действия,
+          результаты диагностики и статус воронки. Это превращает сайт в рабочий вход в
+          единую систему данных платформы «Сильные стороны».
+        </p>
+      </article>
       <IntegrationMap />
+      <DataFlowMap />
       <div className="cards-grid">
         <SignalCard
           title="Обязательные интеграции"
@@ -32,7 +43,7 @@ export default function IntegrationsSection() {
             "BS-Evolve",
             "amoCRM",
             "База знаний",
-            "Сайт AKMEHR",
+            "Сайт «Сильные стороны»",
             "Яндекс.Метрика",
             "Telegram-боты",
             "Будущие API"

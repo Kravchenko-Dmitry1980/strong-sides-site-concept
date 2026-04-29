@@ -67,7 +67,7 @@ export default function B2CSection() {
     <SectionShell
       eyebrow="Ветка B2C"
       title="Для человека"
-      lead="Структура B2C: диагностика -> результат диагностики -> развитие через BS-Evolve."
+      lead="Платформа «Сильные стороны»: диагностика -> результат диагностики -> развитие через BS-Evolve."
     >
       <div className="cards-grid cards-grid--b2c">
         <SignalCard

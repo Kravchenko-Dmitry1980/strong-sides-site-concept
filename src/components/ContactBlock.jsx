@@ -5,7 +5,7 @@ export default function ContactBlock() {
       <p>Для согласования пилота, партнерства и архитектуры внедрения.</p>
       <div className="contact-block__rows">
         <p>
-          <span>Почта:</span> partners@akmehr.ru
+          <span>Почта:</span> info@silnye-storony.ru
         </p>
         <p>
           <span>Форма заявки:</span> планируемый раздел сайта
