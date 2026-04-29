@@ -1,6 +1,7 @@
 import { useState } from "react";
 import BeforeAfterPanel from "../components/BeforeAfterPanel";
 import BusinessDashboardMockup from "../components/BusinessDashboardMockup";
+import FloatingHumanIllustration from "../components/FloatingHumanIllustration";
 import ProductOfferCard from "../components/ProductOfferCard";
 import SectionShell from "../components/SectionShell";
 import SignalCard from "../components/SignalCard";
@@ -149,6 +150,7 @@ export default function B2BSection() {
           <strong>94%</strong>
         </article>
       </div>
+      <FloatingHumanIllustration mode="team" />
       <BusinessDashboardMockup />
       <article className="business-flow-block">
         <h3>Бизнес-контур платформы</h3>

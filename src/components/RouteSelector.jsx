@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+
 const routeButtons = [
   {
     id: "b2c",
@@ -20,10 +22,17 @@ export default function RouteSelector({ onSelect, compact = false }) {
   return (
     <div className={`route-selector ${compact ? "is-compact" : ""}`}>
       {routeButtons.map((route) => (
-        <button key={route.id} type="button" onClick={() => onSelect(route.id)} className="route-card">
+        <motion.button
+          key={route.id}
+          type="button"
+          onClick={() => onSelect(route.id)}
+          className="route-card"
+          whileHover={{ y: -4, scale: 1.01 }}
+          whileTap={{ scale: 0.99 }}
+        >
           <strong>{route.label}</strong>
           <span>{route.hint}</span>
-        </button>
+        </motion.button>
       ))}
     </div>
   );

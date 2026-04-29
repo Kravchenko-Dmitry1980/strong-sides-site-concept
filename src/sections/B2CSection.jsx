@@ -1,4 +1,5 @@
 import { useState } from "react";
+import FloatingHumanIllustration from "../components/FloatingHumanIllustration";
 import SectionShell from "../components/SectionShell";
 import SignalCard from "../components/SignalCard";
 
@@ -95,6 +96,7 @@ export default function B2CSection() {
       </div>
       <div className="split-layout">
         <div className="selector-stack">
+          <FloatingHumanIllustration mode="person" />
           <div className="selector-list">
             <h4>Выберите формат диагностики</h4>
             {diagnostics.map((item) => (

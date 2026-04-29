@@ -148,6 +148,33 @@ body {
   mask-image: radial-gradient(circle at 55% 40%, rgba(0, 0, 0, 0.7), transparent 85%);
 }
 
+.premium-card {
+  border: 1px solid rgba(142, 176, 228, 0.26);
+  background: linear-gradient(155deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.015));
+  box-shadow:
+    inset 0 1px 0 rgba(205, 230, 255, 0.08),
+    0 12px 34px rgba(5, 14, 32, 0.34);
+}
+
+.depth-card {
+  box-shadow:
+    inset 0 1px 0 rgba(205, 230, 255, 0.08),
+    0 14px 30px rgba(6, 15, 33, 0.4);
+}
+
+.glow-border {
+  border: 1px solid rgba(123, 210, 255, 0.42);
+  box-shadow: 0 0 0 1px rgba(123, 210, 255, 0.12), 0 0 22px rgba(92, 183, 255, 0.18);
+}
+
+.motion-panel {
+  border-radius: 10px;
+  padding: 8px 10px;
+  background: rgba(12, 24, 44, 0.7);
+  font-size: 0.8rem;
+  color: #c2d6f6;
+}
+
 .hero-section {
   display: grid;
   grid-template-columns: 1.2fr 1fr;
@@ -286,6 +313,39 @@ body {
   gap: 14px;
   position: relative;
   overflow: hidden;
+}
+
+.ai-avatar-stage {
+  border-radius: 16px;
+  padding: 10px;
+}
+
+.ai-avatar-stage__scene {
+  height: 240px;
+  border-radius: 14px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 18%, rgba(121, 209, 255, 0.18), transparent 50%),
+    radial-gradient(circle at 58% 75%, rgba(52, 104, 185, 0.2), transparent 55%),
+    rgba(10, 19, 36, 0.84);
+}
+
+.ai-avatar-stage__panels {
+  margin-top: 10px;
+  display: grid;
+  gap: 6px;
+}
+
+.ai-avatar-core {
+  border-radius: 999px;
+}
+
+.avatar-orbit {
+  border-radius: 999px;
+}
+
+.avatar-particle {
+  border-radius: 50%;
 }
 
 .ai-navigator::before {
@@ -688,6 +748,47 @@ body {
   color: #95b3df;
 }
 
+.floating-human {
+  border-radius: 12px;
+  padding: 12px;
+  position: relative;
+  overflow: hidden;
+  min-height: 158px;
+}
+
+.floating-human__silhouette {
+  width: 84px;
+  height: 118px;
+  margin: 4px auto 8px;
+  border-radius: 46px 46px 18px 18px;
+  background: linear-gradient(180deg, rgba(129, 205, 255, 0.85), rgba(65, 115, 195, 0.45));
+  box-shadow: 0 0 22px rgba(94, 181, 255, 0.35);
+}
+
+.floating-human__orbit {
+  position: absolute;
+  inset: 16px;
+  border: 1px dashed rgba(130, 202, 255, 0.35);
+  border-radius: 999px;
+  animation: orbitSpin 10s linear infinite;
+}
+
+.floating-human__tags {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.floating-human__tags span {
+  border: 1px solid rgba(143, 170, 219, 0.28);
+  border-radius: 999px;
+  padding: 4px 8px;
+  font-size: 0.75rem;
+  color: #b8cff0;
+  background: rgba(255, 255, 255, 0.03);
+}
+
 .business-dashboard {
   border: 1px solid rgba(143, 170, 219, 0.24);
   border-radius: 12px;
@@ -820,6 +921,162 @@ body {
 .data-flow-map__hint p {
   margin: 0;
   color: #bfd2f2;
+}
+
+.live-flow-map {
+  border-radius: 14px;
+  padding: 12px;
+  display: grid;
+  gap: 10px;
+}
+
+.live-flow-map__canvas {
+  border: 1px solid rgba(143, 170, 219, 0.24);
+  border-radius: 12px;
+  background: rgba(9, 18, 34, 0.75);
+  padding: 8px;
+  overflow-x: auto;
+}
+
+.live-flow-map__canvas svg {
+  width: 100%;
+  min-width: 940px;
+  height: auto;
+}
+
+.live-flow-map__mobile-list {
+  display: none;
+}
+
+.flow-node rect {
+  fill: rgba(15, 29, 55, 0.86);
+  stroke: rgba(129, 171, 231, 0.42);
+  stroke-width: 1;
+  transition: all 180ms ease;
+}
+
+.flow-node text {
+  fill: #dcecff;
+  font-size: 11px;
+  pointer-events: none;
+}
+
+.flow-node--active rect,
+.flow-node:hover rect {
+  stroke: rgba(122, 214, 255, 0.95);
+  fill: rgba(28, 58, 98, 0.9);
+  filter: drop-shadow(0 0 10px rgba(106, 200, 255, 0.35));
+}
+
+.flow-line {
+  stroke: rgba(93, 136, 198, 0.46);
+  stroke-width: 2;
+  transition: stroke 160ms ease, opacity 160ms ease;
+}
+
+.flow-line--active {
+  stroke: url(#flowGradient);
+  opacity: 1;
+}
+
+.flow-pulse {
+  fill: #9ae4ff;
+  filter: drop-shadow(0 0 8px rgba(121, 214, 255, 0.8));
+}
+
+.flow-tooltip {
+  border: 1px solid rgba(143, 170, 219, 0.24);
+  border-radius: 12px;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.flow-tooltip h4 {
+  margin: 0 0 8px;
+}
+
+.flow-tooltip p {
+  margin: 0 0 7px;
+  color: #bfd4f5;
+}
+
+.flow-tooltip p span {
+  color: #9cb8e3;
+}
+
+.live-flow-map__legend {
+  margin: 0;
+  color: #9fb8e2;
+  font-size: 0.79rem;
+}
+
+.safe-flow-map {
+  border: 1px solid rgba(143, 170, 219, 0.24);
+  border-radius: 12px;
+  background: rgba(9, 18, 34, 0.74);
+  padding: 12px;
+  display: grid;
+  gap: 10px;
+}
+
+.safe-flow-map svg {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+
+.safe-flow-map__line {
+  stroke: rgba(102, 150, 215, 0.52);
+  stroke-width: 2;
+}
+
+.safe-flow-map__pulse {
+  fill: #96dfff;
+}
+
+.safe-flow-map__node rect {
+  fill: rgba(15, 30, 56, 0.86);
+  stroke: rgba(133, 170, 227, 0.45);
+  stroke-width: 1;
+  transition: 140ms ease;
+}
+
+.safe-flow-map__node text {
+  fill: #dcecff;
+  font-size: 11px;
+  pointer-events: none;
+}
+
+.safe-flow-map__node.is-active rect,
+.safe-flow-map__node:hover rect {
+  stroke: rgba(123, 212, 255, 0.85);
+  fill: rgba(27, 57, 98, 0.9);
+}
+
+.safe-flow-map__tooltip {
+  border: 1px solid rgba(143, 170, 219, 0.22);
+  border-radius: 10px;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.safe-flow-map__tooltip h4 {
+  margin: 0 0 8px;
+}
+
+.safe-flow-map__tooltip p {
+  margin: 0 0 6px;
+  color: #bfd2f2;
+}
+
+.safe-flow-map__tooltip p span {
+  color: #97b6e2;
+}
+
+.safe-flow-map__legend {
+  margin: 0;
+  color: #9fb8e2;
+  font-size: 0.78rem;
 }
 
 .module-showcase-card.is-active {
@@ -993,6 +1250,10 @@ body {
     grid-template-columns: 1fr;
   }
 
+  .live-flow-map__canvas svg {
+    min-width: 860px;
+  }
+
   .route-selector.is-compact {
     grid-template-columns: 1fr;
   }
@@ -1027,6 +1288,24 @@ body {
 
   .flow-map {
     grid-template-columns: 1fr;
+  }
+
+  .live-flow-map__canvas {
+    display: none;
+  }
+
+  .live-flow-map__mobile-list {
+    display: grid;
+    gap: 8px;
+  }
+
+  .flow-node--mobile {
+    border: 1px solid rgba(142, 176, 229, 0.3);
+    border-radius: 10px;
+    background: rgba(12, 24, 45, 0.72);
+    color: #dcecff;
+    text-align: left;
+    padding: 10px;
   }
 }
 
@@ -1079,5 +1358,11 @@ body {
     animation: none !important;
     transition: none !important;
     transform: none !important;
+  }
+
+  .flow-pulse,
+  .floating-human__orbit,
+  .site-app__glow {
+    animation: none !important;
   }
 }

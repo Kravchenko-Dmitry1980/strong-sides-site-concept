@@ -1,4 +1,5 @@
 import { useState } from "react";
+import FloatingHumanIllustration from "../components/FloatingHumanIllustration";
 import SectionShell from "../components/SectionShell";
 import SignalCard from "../components/SignalCard";
 
@@ -77,6 +78,7 @@ export default function B2GSection() {
           ))}
         </div>
       </article>
+      <FloatingHumanIllustration mode="org" />
       <div className="split-layout">
         <div className="selector-list">
           <h4>Выберите формат программы</h4>

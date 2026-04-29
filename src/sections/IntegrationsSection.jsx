@@ -1,4 +1,4 @@
-import DataFlowMap from "../components/DataFlowMap";
+import SafeDataFlowMap from "../components/SafeDataFlowMap";
 import FlowMap from "../components/FlowMap";
 import IntegrationMap from "../components/IntegrationMap";
 import SectionShell from "../components/SectionShell";
@@ -11,6 +11,7 @@ export default function IntegrationsSection() {
       title="Интеграции и данные"
       lead="Интеграции нужны, чтобы сайт не был витриной, а стал входом в единую систему данных."
     >
+      <SafeDataFlowMap />
       <FlowMap
         nodes={[
           "Сайт «Сильные стороны»",
@@ -35,7 +36,6 @@ export default function IntegrationsSection() {
         </p>
       </article>
       <IntegrationMap />
-      <DataFlowMap />
       <div className="cards-grid">
         <SignalCard
           title="Обязательные интеграции"
