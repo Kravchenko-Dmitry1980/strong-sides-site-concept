@@ -1,9 +1,12 @@
 import { motion } from "framer-motion";
+import InteractiveConstellationBackground from "./InteractiveConstellationBackground";
 import { IconUserCircle, IconPlayOutline, IconChatOutline } from "./icons";
 
 export default function LandingHero({ onRouteSelect, onScrollToContacts }) {
   return (
     <section className="landing-hero" id="landing-hero">
+      <InteractiveConstellationBackground />
+      <div className="landing-hero__readability-veil" aria-hidden />
       <div className="landing-hero__glow landing-hero__glow--left" aria-hidden />
       <div className="landing-hero__glow landing-hero__glow--right" aria-hidden />
       <div className="landing-hero__grid">

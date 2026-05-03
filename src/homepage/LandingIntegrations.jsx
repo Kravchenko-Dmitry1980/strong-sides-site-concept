@@ -30,7 +30,14 @@ const cards = [
 
 export default function LandingIntegrations() {
   return (
-    <section className="landing-integrations" id="landing-integrations">
+    <motion.section
+      className="landing-integrations"
+      id="landing-integrations"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-8% 0px", amount: 0.12 }}
+      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+    >
       <p className="landing-section-label landing-section-label--center">ИНТЕГРАЦИИ И ПОТОК ДАННЫХ</p>
       <div className="landing-flow">
         {flow.map((item, i) => (
@@ -44,6 +51,7 @@ export default function LandingIntegrations() {
           >
             <div
               className={`landing-flow__node-card ${item.highlight ? "landing-flow__node-card--highlight" : ""}`}
+              style={{ "--node-delay": `${i * 0.35}s` }}
             >
               <span className="landing-flow__node-icon" aria-hidden>
                 <FlowNodeIcon variant={item.icon} />
@@ -51,7 +59,7 @@ export default function LandingIntegrations() {
               <span className="landing-flow__node-label">{item.label}</span>
             </div>
             {i < flow.length - 1 ? (
-              <span className="landing-flow__connector" aria-hidden>
+              <span className="landing-flow__connector" style={{ "--flow-idx": i }} aria-hidden>
                 <span className="landing-flow__arrow" />
               </span>
             ) : null}
@@ -84,6 +92,6 @@ export default function LandingIntegrations() {
           </motion.article>
         ))}
       </div>
-    </section>
+    </motion.section>
   );
 }

@@ -22,10 +22,10 @@ export default function LandingPlatformShowcase({ onRouteSelect }) {
       <div className="landing-platform__grid">
         <motion.div
           className="landing-tablet-wrap"
-          initial={{ opacity: 0, x: -12 }}
+          initial={{ opacity: 0, x: -18 }}
           whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.45 }}
+          viewport={{ once: true, margin: "-10% 0px", amount: 0.2 }}
+          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
         >
           <div className="landing-tablet">
             <div className="landing-tablet__bezel">
@@ -113,10 +113,10 @@ export default function LandingPlatformShowcase({ onRouteSelect }) {
 
         <motion.div
           className="landing-platform__copy"
-          initial={{ opacity: 0, x: 12 }}
+          initial={{ opacity: 0, x: 16 }}
           whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.45 }}
+          viewport={{ once: true, margin: "-10% 0px", amount: 0.2 }}
+          transition={{ duration: 0.55, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
         >
           <p className="landing-section-label">ПЛАТФОРМА BS-EVOLVE</p>
           <h2 className="landing-section-title">Платформа, с которой команде легко работать</h2>

@@ -67,7 +67,13 @@ export default function LandingHowItWorks({ onRouteSelect }) {
   return (
     <section className="landing-process" id="landing-process">
       <div className="landing-process__grid">
-        <div className="landing-process__col">
+        <motion.div
+          className="landing-process__col"
+          initial={{ opacity: 0, y: 14 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-12% 0px", amount: 0.2 }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+        >
           <p className="landing-section-label">КАК ЭТО РАБОТАЕТ</p>
           <ol className="landing-timeline">
             {steps.map((step, idx) => (
@@ -95,9 +101,16 @@ export default function LandingHowItWorks({ onRouteSelect }) {
               </motion.li>
             ))}
           </ol>
-        </div>
+        </motion.div>
 
-        <div className="landing-process__col" id="landing-demo">
+        <motion.div
+          className="landing-process__col"
+          id="landing-demo"
+          initial={{ opacity: 0, y: 14 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-12% 0px", amount: 0.15 }}
+          transition={{ duration: 0.5, delay: 0.06, ease: [0.22, 1, 0.36, 1] }}
+        >
           <p className="landing-section-label">ПОСМОТРИТЕ ПЛАТФОРМУ В ДЕЙСТВИИ</p>
           <div className="landing-demo-grid">
             {demos.map((d, i) => (
@@ -107,8 +120,12 @@ export default function LandingHowItWorks({ onRouteSelect }) {
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.04 }}
-                whileHover={{ y: -3 }}
+                transition={{ delay: i * 0.04, duration: 0.45 }}
+                whileHover={{
+                  y: -4,
+                  scale: 1.01,
+                  transition: { type: "spring", stiffness: 420, damping: 28 }
+                }}
               >
                 <button
                   type="button"
@@ -134,7 +151,7 @@ export default function LandingHowItWorks({ onRouteSelect }) {
             Посмотреть все демо
             <span aria-hidden> →</span>
           </button>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
