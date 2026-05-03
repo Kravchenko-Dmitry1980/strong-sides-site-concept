@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import Header from "./components/Header";
 import HeroSection from "./sections/HeroSection";
 import B2CSection from "./sections/B2CSection";
@@ -22,6 +22,7 @@ export default function App() {
   const [currentSection, setCurrentSection] = useState(0);
   const [showMenu, setShowMenu] = useState(true);
   const [showHints, setShowHints] = useState(true);
+  const [homeAnchor, setHomeAnchor] = useState("hero");
   const totalSections = sections.length;
 
   const goNext = () => {
@@ -32,7 +33,7 @@ export default function App() {
     setCurrentSection((prev) => (prev - 1 + totalSections) % totalSections);
   };
 
-  const goToSection = (indexOrId) => {
+  const goToSection = useCallback((indexOrId) => {
     if (typeof indexOrId === "number") {
       setCurrentSection(indexOrId);
       return;
@@ -42,7 +43,54 @@ export default function App() {
     if (targetIndex >= 0) {
       setCurrentSection(targetIndex);
     }
-  };
+  }, []);
+
+  const scrollToLandingAnchor = useCallback(
+    (anchorId) => {
+      const el = document.getElementById(anchorId);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    },
+    []
+  );
+
+  const handleLandingNavItem = useCallback(
+    (item) => {
+      if (item.target === "section") {
+        goToSection(item.sectionId);
+        return;
+      }
+      const isHome = sections[currentSection]?.id === "home";
+      if (!isHome) {
+        goToSection("home");
+        window.requestAnimationFrame(() => {
+          setTimeout(() => scrollToLandingAnchor(item.anchor), 120);
+        });
+      } else {
+        scrollToLandingAnchor(item.anchor);
+      }
+    },
+    [currentSection, goToSection, scrollToLandingAnchor]
+  );
+
+  const handleAuditCta = useCallback(() => {
+    const isHome = sections[currentSection]?.id === "home";
+    if (!isHome) {
+      goToSection("home");
+      window.requestAnimationFrame(() => {
+        setTimeout(() => scrollToLandingAnchor("landing-contacts"), 120);
+      });
+    } else {
+      scrollToLandingAnchor("landing-contacts");
+    }
+  }, [currentSection, goToSection, scrollToLandingAnchor]);
+
+  useEffect(() => {
+    if (sections[currentSection]?.id === "home") {
+      window.scrollTo({ top: 0, behavior: "auto" });
+    }
+  }, [currentSection]);
 
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -78,21 +126,27 @@ export default function App() {
       b2b: () => goToSection("b2b"),
       b2g: () => goToSection("b2g")
     }),
-    []
+    [goToSection]
   );
 
+  const isHome = activeSection.id === "home";
+
   return (
-    <main className="site-app">
+    <main className={`site-app ${isHome ? "site-app--b2b-home" : ""}`}>
       <div className="site-app__glow" />
       <Header
-        items={sections}
         activeId={activeSection.id}
-        onSelect={goToSection}
+        homeAnchor={homeAnchor}
+        onLandingNavItem={handleLandingNavItem}
+        onAuditCta={handleAuditCta}
+        moreSections={sections}
+        onSelectSection={goToSection}
         hidden={!showMenu}
       />
-      <section className="site-content">
+      <section className={`site-content ${isHome ? "site-content--landing" : ""}`}>
         <ActiveSection
           onRouteSelect={goToSection}
+          onHomeAnchorChange={isHome ? setHomeAnchor : undefined}
           routeActions={routeActions}
           demoMode={!showMenu}
           hintsVisible={showHints}
