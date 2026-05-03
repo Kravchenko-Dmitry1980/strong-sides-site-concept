@@ -1,3 +1,5 @@
+import { BrandNetworkMark } from "../homepage/icons";
+
 const LANDING_NAV = [
   { key: "hero", label: "Главная", target: "anchor", anchor: "landing-hero" },
   { key: "platform", label: "Возможности", target: "anchor", anchor: "landing-platform" },
@@ -20,7 +22,9 @@ export default function Header({
     <header className={`top-header top-header--b2b ${hidden ? "is-hidden" : ""}`}>
       <div className="top-header__inner">
         <div className="brand-block">
-          <span className="brand-mark" />
+          <span className="brand-mark brand-mark--network" aria-hidden>
+            <BrandNetworkMark />
+          </span>
           <div>
             <strong>Сильные стороны</strong>
             <p>BS-Evolve · B2B</p>

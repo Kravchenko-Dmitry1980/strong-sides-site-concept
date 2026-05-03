@@ -1,11 +1,18 @@
 import { motion } from "framer-motion";
-import { PlatformBulletIcon } from "./icons";
+import { PlatformBulletIcon, DashNavIcon, DashSparkline } from "./icons";
 
 const bullets = [
   { text: "Диагностика команды и ролей", icon: "team" },
   { text: "Треки развития под KPI", icon: "track" },
   { text: "Нейроаналитика и дашборды", icon: "chart" },
   { text: "Подготовка решений для руководителя", icon: "exec" }
+];
+
+const navItems = [
+  { label: "Обзор", icon: "overview", active: true },
+  { label: "Команда", icon: "team", active: false },
+  { label: "KPI", icon: "kpi", active: false },
+  { label: "Интеграции", icon: "integrations", active: false }
 ];
 
 export default function LandingPlatformShowcase({ onRouteSelect }) {
@@ -21,17 +28,23 @@ export default function LandingPlatformShowcase({ onRouteSelect }) {
           transition={{ duration: 0.45 }}
         >
           <div className="landing-tablet">
-            <div className="landing-tablet__bezel" />
+            <div className="landing-tablet__bezel">
+              <span className="landing-tablet__camera" aria-hidden />
+            </div>
             <div className="landing-tablet__screen">
               <div className="landing-tablet__glare" aria-hidden />
               <div className="landing-dash">
                 <aside className="landing-dash__sidebar">
                   <span className="landing-dash__logo">BS-Evolve</span>
                   <ul>
-                    <li className="is-active">Обзор</li>
-                    <li>Команда</li>
-                    <li>KPI</li>
-                    <li>Интеграции</li>
+                    {navItems.map((item) => (
+                      <li key={item.label} className={item.active ? "is-active" : ""}>
+                        <span className="landing-dash__nav-ic" aria-hidden>
+                          <DashNavIcon variant={item.icon} />
+                        </span>
+                        {item.label}
+                      </li>
+                    ))}
                   </ul>
                 </aside>
                 <div className="landing-dash__main">
@@ -43,23 +56,17 @@ export default function LandingPlatformShowcase({ onRouteSelect }) {
                     <article>
                       <span>Вовлечённость</span>
                       <strong>87%</strong>
-                      <div className="landing-dash__bar">
-                        <i style={{ width: "87%" }} />
-                      </div>
+                      <DashSparkline variant="green" className="landing-dash__sparkline" />
                     </article>
                     <article>
                       <span>Треки</span>
                       <strong>76%</strong>
-                      <div className="landing-dash__bar">
-                        <i style={{ width: "76%" }} />
-                      </div>
+                      <DashSparkline variant="purple" className="landing-dash__sparkline" />
                     </article>
                     <article>
                       <span>KPI команды</span>
                       <strong>92%</strong>
-                      <div className="landing-dash__bar">
-                        <i style={{ width: "92%" }} />
-                      </div>
+                      <DashSparkline variant="orange" className="landing-dash__sparkline" />
                     </article>
                   </div>
                   <div className="landing-dash__divider" aria-hidden />
@@ -76,6 +83,9 @@ export default function LandingPlatformShowcase({ onRouteSelect }) {
                         </li>
                         <li>
                           <i className="dot dot--c" /> Рост
+                        </li>
+                        <li>
+                          <i className="dot dot--d" /> Баланс
                         </li>
                       </ul>
                     </div>
@@ -94,7 +104,10 @@ export default function LandingPlatformShowcase({ onRouteSelect }) {
                 </div>
               </div>
             </div>
-            <div className="landing-tablet__keyboard" />
+            <div className="landing-tablet__keyboard">
+              <div className="landing-tablet__keyboard-keys" aria-hidden />
+            </div>
+            <div className="landing-tablet__shadow" aria-hidden />
           </div>
         </motion.div>
 

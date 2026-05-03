@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { IconUserCircle, IconPlayOutline, IconChatOutline } from "./icons";
 
 export default function LandingHero({ onRouteSelect, onScrollToContacts }) {
   return (
@@ -31,25 +32,26 @@ export default function LandingHero({ onRouteSelect, onScrollToContacts }) {
             принимать управленческие решения на основе данных.
           </p>
           <div className="landing-hero__actions">
-            <div className="landing-hero__actions-row">
+            <div className="landing-hero__actions-row landing-hero__actions-row--primary">
               <button type="button" className="landing-btn landing-btn--primary landing-btn--hero" onClick={onScrollToContacts}>
+                <IconUserCircle className="landing-btn__lead-icon" />
                 Запросить аудит команды
                 <span className="landing-btn__arrow" aria-hidden>
                   →
                 </span>
               </button>
+            </div>
+            <div className="landing-hero__actions-row landing-hero__actions-row--secondary">
               <button
                 type="button"
                 className="landing-btn landing-btn--ghost landing-btn--ghost-hero"
                 onClick={() => onRouteSelect("agents")}
               >
-                <span className="landing-icon landing-icon--play" aria-hidden />
+                <IconPlayOutline className="landing-btn__ghost-icon" />
                 Посмотреть демо
               </button>
-            </div>
-            <div className="landing-hero__actions-row landing-hero__actions-row--tertiary">
-              <button type="button" className="landing-btn landing-btn--tertiary" onClick={onScrollToContacts}>
-                <span className="landing-icon landing-icon--chat" aria-hidden />
+              <button type="button" className="landing-btn landing-btn--ghost landing-btn--ghost-hero" onClick={onScrollToContacts}>
+                <IconChatOutline className="landing-btn__ghost-icon" />
                 Обсудить пилот
               </button>
             </div>
@@ -71,10 +73,30 @@ export default function LandingHero({ onRouteSelect, onScrollToContacts }) {
             <div
               className="landing-avatar-stage__figure"
               role="img"
-              aria-label="Место для 3D-аватара AI-навигатора"
+              aria-label="Место для 3D-аватара AI-навигатора; премиальный плейсхолдер до подключения изображения"
             >
+              <div className="landing-avatar-stage__rim" aria-hidden />
               <div className="landing-avatar-stage__glass" aria-hidden />
               <div className="landing-avatar-stage__silhouette" />
+              <div className="landing-avatar-stage__torso" aria-hidden />
+              <div className="landing-avatar-stage__gesture" aria-hidden>
+                <svg viewBox="0 0 120 140" className="landing-avatar-stage__gesture-svg">
+                  <path
+                    fill="none"
+                    stroke="rgba(255,190,140,0.35)"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    d="M78 28 C92 22 102 32 98 48 C94 58 88 62 82 58"
+                  />
+                  <path
+                    fill="none"
+                    stroke="rgba(255,180,120,0.25)"
+                    strokeWidth="1.2"
+                    strokeLinecap="round"
+                    d="M82 58 L72 88 L58 96"
+                  />
+                </svg>
+              </div>
               <div className="landing-avatar-stage__particles" aria-hidden />
               <div className="landing-avatar-stage__scan" />
             </div>
