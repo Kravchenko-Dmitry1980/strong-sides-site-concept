@@ -87,7 +87,8 @@ export default function App() {
   }, [currentSection, goToSection, scrollToLandingAnchor]);
 
   useEffect(() => {
-    if (sections[currentSection]?.id === "home") {
+    const id = sections[currentSection]?.id;
+    if (id === "home" || id === "agents") {
       window.scrollTo({ top: 0, behavior: "auto" });
     }
   }, [currentSection]);
@@ -130,9 +131,10 @@ export default function App() {
   );
 
   const isHome = activeSection.id === "home";
+  const premiumShell = isHome || activeSection.id === "agents";
 
   return (
-    <main className={`site-app ${isHome ? "site-app--b2b-home" : ""}`}>
+    <main className={`site-app ${premiumShell ? "site-app--b2b-home" : ""}`}>
       <div className="site-app__glow" />
       <Header
         activeId={activeSection.id}
@@ -143,10 +145,11 @@ export default function App() {
         onSelectSection={goToSection}
         hidden={!showMenu}
       />
-      <section className={`site-content ${isHome ? "site-content--landing" : ""}`}>
+      <section className={`site-content ${premiumShell ? "site-content--landing" : ""}`}>
         <ActiveSection
           onRouteSelect={goToSection}
           onHomeAnchorChange={isHome ? setHomeAnchor : undefined}
+          onAuditCta={handleAuditCta}
           routeActions={routeActions}
           demoMode={!showMenu}
           hintsVisible={showHints}
