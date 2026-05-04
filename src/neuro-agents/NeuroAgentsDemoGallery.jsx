@@ -1,11 +1,8 @@
-import { useMemo } from "react";
 import { motion } from "framer-motion";
-import { NEURO_AGENTS, NEURO_DEMO_ITEMS } from "../data/neuroAgentsConfig";
+import { NEURO_DEMO_ITEMS } from "../data/neuroAgentsConfig";
 import { IconPlay } from "./NeuroAgentsIcons";
 
 export default function NeuroAgentsDemoGallery({ onWatchAll }) {
-  const byId = useMemo(() => Object.fromEntries(NEURO_AGENTS.map((a) => [a.id, a])), []);
-
   return (
     <motion.section
       id="neuro-demo-gallery"
@@ -21,12 +18,11 @@ export default function NeuroAgentsDemoGallery({ onWatchAll }) {
       </p>
       <div className="na-demo__grid">
         {NEURO_DEMO_ITEMS.map((item) => {
-          const agent = byId[item.agentId];
           const thumbClass = `na-demo-thumb na-demo-thumb--${item.thumbnailType}`;
           const hasVideo = Boolean(item.videoUrl);
 
           return (
-            <article key={item.id} className="na-demo-card">
+            <article key={item.id} id={`neuro-demo-card-${item.id}`} className="na-demo-card">
               <div className={thumbClass}>
                 {!hasVideo ? <span className="na-demo-card__placeholder">Превью</span> : null}
                 <button
@@ -42,12 +38,6 @@ export default function NeuroAgentsDemoGallery({ onWatchAll }) {
               </div>
               <h3 className="na-demo-card__title">{item.title}</h3>
               <p className="na-demo-card__scenario">{item.scenario}</p>
-              {agent ? (
-                <p className="na-demo-card__meta">
-                  Статус: {agent.status}
-                  {item.videoUrl ? "" : " · ссылка появится позже"}
-                </p>
-              ) : null}
             </article>
           );
         })}

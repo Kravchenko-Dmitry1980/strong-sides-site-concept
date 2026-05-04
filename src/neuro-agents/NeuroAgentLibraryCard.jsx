@@ -1,4 +1,5 @@
 import { IconPlay } from "./NeuroAgentsIcons";
+import NeuroAgentLibraryPortrait from "./NeuroAgentLibraryPortrait";
 
 const STATUS_CLASS = {
   demo_available: "na-badge--demo",
@@ -14,18 +15,13 @@ export default function NeuroAgentLibraryCard({ agent, onDemo }) {
     <article className={`na-lib-card na-lib-card--${agent.accentColor}`}>
       <div className="na-lib-card__visual">
         <div className="na-lib-card__glow" />
-        <div className="na-lib-card__silhouette" />
+        <div className="na-lib-card__portrait-wrap">
+          <NeuroAgentLibraryPortrait agent={agent} />
+        </div>
       </div>
       <h3 className="na-lib-card__name">{agent.name}</h3>
       <p className="na-lib-card__category">{agent.category}</p>
-      <p className="na-lib-card__task">{agent.task}</p>
-      {agent.description ? <p className="na-lib-card__desc">{agent.description}</p> : null}
-      <p className="na-lib-card__audience">
-        <span>Для кого:</span> {agent.targetAudience}
-      </p>
-      <p className="na-lib-card__result">
-        <span>Результат:</span> {agent.result}
-      </p>
+      <p className="na-lib-card__task">{agent.description || agent.task}</p>
       <div className={`na-badge ${badgeClass}`}>
         <span className="na-badge__dot" />
         {agent.status}

@@ -37,7 +37,7 @@ function estimateProfit(employees, routineHours, conversion) {
   const e = Number(employees) || 0;
   const r = Number(routineHours) || 0;
   const c = Number(conversion) || 0;
-  return Math.round(4_000_000 + e * 118_000 + r * 640_000 + c * 275_000);
+  return Math.round(4_220_000 + e * 118_000 + r * 640_000 + c * 275_000);
 }
 
 const KPI_ICONS = {
@@ -116,7 +116,11 @@ export default function NeuroAgentsBusinessImpact() {
                     }}
                     labelStyle={{ color: "var(--ld-muted)" }}
                   />
-                  <Legend />
+                  <Legend
+                    wrapperStyle={{ color: "rgba(250,247,242,0.65)", fontSize: 12, paddingTop: 8 }}
+                    iconType="circle"
+                    iconSize={8}
+                  />
                   <Line
                     type="monotone"
                     dataKey="withAgents"

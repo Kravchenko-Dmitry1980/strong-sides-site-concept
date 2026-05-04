@@ -18,7 +18,9 @@ export default function NeuroAgentsWhyUs() {
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.4 }}
     >
-      <h2 className="na-section__title">Почему компании заказывают нейроагентов у нас</h2>
+      <div className="na-why__intro">
+        <h2 className="na-section__title na-section__title--center">Почему компании заказывают нейроагентов у нас</h2>
+      </div>
       <div className="na-why__grid">
         {NEURO_WHY_US.map((item) => {
           const Ic = ICONS[item.icon] ?? IconRocket;

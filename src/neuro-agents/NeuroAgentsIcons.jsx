@@ -117,3 +117,61 @@ export function IconPlusAgent({ className = "" }) {
     </svg>
   );
 }
+
+/** Компактная иконка для мини-карточек хаба (по iconType агента). */
+export function NeuroAgentHubIcon({ type, className = "" }) {
+  const base = { className, width: 20, height: 20, viewBox: "0 0 24 24", "aria-hidden": true };
+  switch (type) {
+    case "sales":
+      return (
+        <svg {...base}>
+          <path
+            fill="currentColor"
+            d="M12 2a10 10 0 1 0 10 10h-2a8 8 0 1 1-8-8V2zm0 4a6 6 0 1 0 6 6h-2a4 4 0 1 1-4-4V6zm0 4a2 2 0 1 0 2 2h-2v-2z"
+          />
+        </svg>
+      );
+    case "analytics":
+      return (
+        <svg {...base}>
+          <path fill="currentColor" d="M4 19h2v-7H4v7zm4 0h2V5H8v14zm4 0h2v-5h-2v5zm4 0h2V9h-2v10z" />
+        </svg>
+      );
+    case "secretary":
+      return (
+        <svg {...base}>
+          <path
+            fill="currentColor"
+            d="M12 1a7 7 0 0 0-7 7v4H3v2h18v-2h-2V8a7 7 0 0 0-7-7zm0 2a5 5 0 0 1 5 5v4H7V8a5 5 0 0 1 5-5zm-6 14v2h12v-2H6z"
+          />
+        </svg>
+      );
+    case "hr":
+      return (
+        <svg {...base}>
+          <path
+            fill="currentColor"
+            d="M12 11c1.7 0 3-1.3 3-3s-1.3-3-3-3-3 1.3-3 3 1.3 3 3 3zm0 2c-2.7 0-8 1.3-8 4v3h16v-3c0-2.7-5.3-4-8-4z"
+          />
+        </svg>
+      );
+    case "tracker":
+      return (
+        <svg {...base}>
+          <path fill="currentColor" d="M3 17l4-4 4 4 10-10v4h2V3H9v2h8.2L11 13.2 7 9.2 3 13.2V17z" />
+        </svg>
+      );
+    case "kpi":
+      return (
+        <svg {...base}>
+          <path fill="currentColor" d="M11 2h2v10h10a8 8 0 0 0-8-8V2zm0 2.2A5.8 5.8 0 0 1 16.8 10H11V4.2z" />
+        </svg>
+      );
+    default:
+      return (
+        <svg {...base}>
+          <circle cx="12" cy="12" r="4" fill="currentColor" />
+        </svg>
+      );
+  }
+}
