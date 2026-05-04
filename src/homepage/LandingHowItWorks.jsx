@@ -1,69 +1,16 @@
-import { motion } from "framer-motion";
-import { TimelineStepIcon, DemoModuleIcon } from "./icons";
+import { useMemo, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { TimelineStepIcon } from "./icons";
+import { HOMEPAGE_PROCESS_STEPS } from "./homepageProcessConfig";
 
-const steps = [
-  {
-    n: 1,
-    icon: "request",
-    title: "Запрос",
-    text: "Вы рассказываете о задачах и целях вашей компании."
-  },
-  {
-    n: 2,
-    icon: "diagnostics",
-    title: "Диагностика",
-    text: "Проводим анализ команды, ролей и процессов."
-  },
-  {
-    n: 3,
-    icon: "profile",
-    title: "Профиль команды",
-    text: "Формируем профиль, выявляем сильные стороны и зоны роста."
-  },
-  {
-    n: 4,
-    icon: "route",
-    title: "Решения и маршрут",
-    text: "Предлагаем маршрут развития и конкретные рекомендации."
-  },
-  {
-    n: 5,
-    icon: "kpi",
-    title: "Результат и KPI",
-    text: "Отслеживаем результаты и рост KPI в реальном времени."
-  }
-];
+export default function LandingHowItWorks() {
+  const [activeStepId, setActiveStepId] = useState("diagnostics");
 
-const demos = [
-  {
-    title: "AI-навигатор",
-    text: "Подбор сценариев и маршрутов",
-    icon: "navigator"
-  },
-  {
-    title: "Нейропродажник",
-    text: "Сценарии продаж и возражения",
-    icon: "seller"
-  },
-  {
-    title: "Нейроаналитик",
-    text: "Аналитика команды и KPI",
-    icon: "analyst"
-  },
-  {
-    title: "BS-Evolve",
-    text: "Управление развитием и задачами",
-    icon: "platform"
-  },
-  {
-    title: "Дашборды / CRM",
-    text: "Все ключевые метрики на одном экране",
-    icon: "dashboard",
-    wide: true
-  }
-];
+  const activeStep = useMemo(
+    () => HOMEPAGE_PROCESS_STEPS.find((step) => step.id === activeStepId) ?? HOMEPAGE_PROCESS_STEPS[0],
+    [activeStepId]
+  );
 
-export default function LandingHowItWorks({ onRouteSelect }) {
   return (
     <section className="landing-process" id="landing-process">
       <div className="landing-process__grid">
@@ -76,30 +23,42 @@ export default function LandingHowItWorks({ onRouteSelect }) {
         >
           <p className="landing-section-label">КАК ЭТО РАБОТАЕТ</p>
           <ol className="landing-timeline">
-            {steps.map((step, idx) => (
+            {HOMEPAGE_PROCESS_STEPS.map((step, idx) => {
+              const isActive = step.id === activeStep.id;
+
+              return (
               <motion.li
-                key={step.n}
-                className="landing-timeline__step"
+                key={step.id}
+                className={`landing-timeline__step ${isActive ? "is-active" : ""}`}
                 initial={{ opacity: 0, x: -8 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{ delay: idx * 0.05 }}
               >
-                <div className="landing-timeline__rail">
-                  <span className="landing-timeline__num">{step.n}</span>
-                  {idx < steps.length - 1 ? <span className="landing-timeline__arrow" aria-hidden /> : null}
-                </div>
-                <div className="landing-timeline__iconcell">
-                  <span className="landing-timeline__icon-ring">
-                    <TimelineStepIcon variant={step.icon} />
-                  </span>
-                </div>
-                <div className="landing-timeline__body">
-                  <h3>{step.title}</h3>
-                  <p>{step.text}</p>
-                </div>
+                <button
+                  type="button"
+                  className="landing-timeline__button"
+                  onClick={() => setActiveStepId(step.id)}
+                  aria-pressed={isActive}
+                  aria-label={`Шаг ${step.number}: ${step.title}`}
+                >
+                  <div className="landing-timeline__rail">
+                    <span className="landing-timeline__num">{step.number}</span>
+                    {idx < HOMEPAGE_PROCESS_STEPS.length - 1 ? <span className="landing-timeline__arrow" aria-hidden /> : null}
+                  </div>
+                  <div className="landing-timeline__iconcell">
+                    <span className="landing-timeline__icon-ring">
+                      <TimelineStepIcon variant={step.icon} />
+                    </span>
+                  </div>
+                  <div className="landing-timeline__body">
+                    <h3>{step.title}</h3>
+                    <p>{step.shortDescription}</p>
+                  </div>
+                </button>
               </motion.li>
-            ))}
+            );
+            })}
           </ol>
         </motion.div>
 
@@ -111,46 +70,63 @@ export default function LandingHowItWorks({ onRouteSelect }) {
           viewport={{ once: true, margin: "-12% 0px", amount: 0.15 }}
           transition={{ duration: 0.5, delay: 0.06, ease: [0.22, 1, 0.36, 1] }}
         >
-          <p className="landing-section-label">ПОСМОТРИТЕ ПЛАТФОРМУ В ДЕЙСТВИИ</p>
-          <div className="landing-demo-grid">
-            {demos.map((d, i) => (
-              <motion.article
-                key={d.title}
-                className={`landing-demo-card ${d.wide ? "landing-demo-card--wide" : ""}`}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.04, duration: 0.45 }}
-                whileHover={{
-                  y: -4,
-                  scale: 1.01,
-                  transition: { type: "spring", stiffness: 420, damping: 28 }
-                }}
-              >
-                <button
-                  type="button"
-                  className="landing-demo-card__play"
-                  aria-label={`Демо: ${d.title}`}
-                  onClick={() => onRouteSelect("agents")}
-                >
-                  <span className="landing-icon landing-icon--play-solid" aria-hidden />
-                </button>
-                <div className="landing-demo-card__inner">
-                  <span className="landing-demo-card__module-icon" aria-hidden>
-                    <DemoModuleIcon variant={d.icon} />
-                  </span>
-                  <div className="landing-demo-card__text">
-                    <h3>{d.title}</h3>
-                    <p>{d.text}</p>
-                  </div>
+          <p className="landing-section-label">ПРОРАБОТКА ШАГА</p>
+          <AnimatePresence mode="wait">
+            <motion.article
+              key={activeStep.id}
+              className="landing-process-detail"
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+            >
+              <header className="landing-process-detail__header">
+                <p className="landing-process-detail__kicker">Шаг {activeStep.number}</p>
+                <h3>{activeStep.title}</h3>
+                <p>{activeStep.shortDescription}</p>
+              </header>
+
+              <div className="landing-process-detail__group">
+                <h4>Что происходит</h4>
+                <ul className="landing-process-detail__list">
+                  {activeStep.whatHappens.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="landing-process-detail__group">
+                <h4>Инструменты и модули</h4>
+                <div className="landing-process-detail__chips">
+                  {activeStep.tools.map((tool) => (
+                    <span key={tool} className="landing-process-detail__chip">
+                      {tool}
+                    </span>
+                  ))}
                 </div>
-              </motion.article>
-            ))}
-          </div>
-          <button type="button" className="landing-link-btn" onClick={() => onRouteSelect("agents")}>
-            Посмотреть все демо
-            <span aria-hidden> →</span>
-          </button>
+              </div>
+
+              <div className="landing-process-detail__group">
+                <h4>Бизнес-результат</h4>
+                <ul className="landing-process-detail__list">
+                  {activeStep.businessOutput.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="landing-process-detail__group">
+                <h4>Демо / видео действия</h4>
+                <div className="landing-process-detail__actions">
+                  {activeStep.demoActions.map((action) => (
+                    <button key={action} type="button" className="landing-process-detail__action-btn">
+                      {action}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </motion.article>
+          </AnimatePresence>
         </motion.div>
       </div>
     </section>
